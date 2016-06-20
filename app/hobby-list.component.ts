@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {HobbyService} from "./hobby.service";
 import {Hobby} from "./hobby";
 import {Router} from "@angular/router-deprecated";
-import { Observable } from "rxjs/Observable";
+import { FirebaseListObservable } from 'angularfire2';
 
 @Component({
   template: `
@@ -21,9 +21,9 @@ export class HobbyListComponent implements OnInit {
   // Use dependency injection to fetch the hobbies service
   constructor(private hobbyService:HobbyService, private router:Router) {}
 
-  // Declare a default value until our hobbies get fetched. Some of the early Angular betas
-  // have trouble with empty values here.
-  hobbies: Observable<Hobby>;
+  // For now, we use <any> because AngularFire2 doesn't have a good story for typed observables.
+  // David East is working on improving this.
+  hobbies: FirebaseListObservable<any>;
 
   ngOnInit() {
     // Asynchronously fetch the list of hobbies from our service.

@@ -2,24 +2,28 @@ import {Component, OnInit} from "@angular/core";
 import {Hobby} from "./hobby";
 import {RouteParams, Router} from "@angular/router-deprecated";
 import {HobbyService} from "./hobby.service";
+import { FirebaseObjectObservable } from 'angularfire2';
 
 @Component({
   template: `
-    <div class="detail" *ngIf="hobby">
-      <h1>{{hobby.name}}</h1>
-      
-      <label>Name</label>
-      <input [(ngModel)]="hobby.name" placeholder="name">
-      
-      <label>Description</label>
-      <input [(ngModel)]="hobby.description" placeholder="description">
-      
-      <label>Count</label>
-      <input type="number" [(ngModel)]="hobby.count" placeholder="count">
-      
-      <label>Units</label>
-      <input [(ngModel)]="hobby.units" placeholder="units">
+    <div class="detail">
+      <h1>{{ (hobby | async)?.name }}</h1>
+      <form #form (submit)="$event.preventDefault()">  
+        <label>Name</label>
+        <input [ngModel]="(hobby | async)?.name" (ngModelChange)="hobby.update({name: $event})" placeholder="name">
+        
+        <label>Description</label>
+        <input [ngModel]="(hobby | async)?.description" (ngModelChange)="hobby.update({description: $event})" placeholder="description">
+        
+        <label>Count</label>
+        <input type="number" [ngModel]="(hobby | async)?.count" (ngModelChange)="hobby.update({count: $event})" placeholder="count">
+        
+        <label>Units</label>
+        <input [ngModel]="(hobby | async)?.units" (ngModelChange)="hobby.update({units: $event})" placeholder="units">
+      </form>
     </div>
+    
+    <!--<pre>{{hobby | async | json}}</pre>-->
     <p><button (click)="goBack()">Back</button></p>
   `,
   styleUrls: ['app/hobby-detail.component.css']
@@ -30,7 +34,7 @@ export class HobbyDetailComponent implements OnInit {
               private routeParams:RouteParams,
               private router:Router) {}
 
-  hobby: Hobby;
+  hobby: FirebaseObjectObservable<Hobby>;
 
   ngOnInit() {
     // fetch the hobby id from the URL paramater

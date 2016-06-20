@@ -6,7 +6,7 @@ div.card {
     margin: .5em;
     padding: .3em 0;
     height: 10em;
-    width: 15em;
+    width: 16em;
     border-radius: 4px;
     float: left;
 }
@@ -19,10 +19,18 @@ div.card:hover {
 
 div.card h2 {
     text-align: center;
-    margin: 8px;
+    margin: 8px 8px 12px 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddeddd;
 }
 
 div.card div {
     padding: 0 20px 5px 20px;
     font-size: 1.2em;
+}
+
+div.card em {
+    font-style: normal;
+    color: #465b65;
+    font-size: .8em;
 }
