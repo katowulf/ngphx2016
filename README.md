@@ -7,5 +7,5 @@ npm install
 npm start
 ```
 
-Check out the [release tags](https://github.com/katowulf/ngphx2016/tags) for various stages of the project.
+Check out the [release tags](https://github.com/katowulf/ngphx2016/releases) for various stages of the project.
 
