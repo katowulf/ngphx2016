@@ -11,7 +11,7 @@ Check out the [release tags](https://github.com/katowulf/ngphx2016/releases) for
 
 ## Troubleshooting TypeScript errors
 
-If you have issues with TypeScript definitions (e.g. `error TS2304: Cannot find name 'Promise'.`) then instead of using `npm start`, or with changes not getting compiled, then launch two terminals and launch the commands separately:
+If you have issues with TypeScript definitions (e.g. `error TS2304: Cannot find name 'Promise'.`), or with changes to .ts files not being compiled, then instead of using `npm start`, launch two terminals and run the commands separately:
 
 ```
 ## terminal 1
