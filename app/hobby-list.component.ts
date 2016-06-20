@@ -2,11 +2,12 @@ import {Component, OnInit} from "@angular/core";
 import {HobbyService} from "./hobby.service";
 import {Hobby} from "./hobby";
 import {Router} from "@angular/router-deprecated";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   template: `
     <h1>Kato's Hobbies</h1>
-    <div *ngFor="let hobby of hobbies"
+    <div *ngFor="let hobby of hobbies | async"
         class="card"
         (click)="showDetail(hobby.id)">
       <h2>{{hobby.name}}</h2>
@@ -22,11 +23,11 @@ export class HobbyListComponent implements OnInit {
 
   // Declare a default value until our hobbies get fetched. Some of the early Angular betas
   // have trouble with empty values here.
-  hobbies: Hobby[] = [];
+  hobbies: Observable<Hobby>;
 
   ngOnInit() {
     // Asynchronously fetch the list of hobbies from our service.
-    this.hobbyService.getHobbies().then(hobbies => this.hobbies = hobbies);
+    this.hobbies = this.hobbyService.getHobbies();
   }
 
   showDetail(id:string) {

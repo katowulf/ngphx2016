@@ -36,7 +36,7 @@ export class HobbyDetailComponent implements OnInit {
     // fetch the hobby id from the URL paramater
     let id = this.routeParams.get('id');
     // fetch the hobby detail from our hobbies service
-    this.hobbyService.getHobby(id).then((hobby:Hobby) => this.hobby = hobby);
+    this.hobby = this.hobbyService.getHobby(id);
   }
 
   goBack() {
