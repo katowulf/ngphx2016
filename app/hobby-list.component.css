@@ -1,0 +1,28 @@
+
+div.card {
+    cursor: pointer;
+    color: #607D8B;
+    background-color: #f0ffef;
+    margin: .5em;
+    padding: .3em 0;
+    height: 10em;
+    width: 15em;
+    border-radius: 4px;
+    float: left;
+}
+
+div.card:hover {
+    color: #6b7baa;
+    background-color: #e1f1e1;
+    left: .1em;
+}
+
+div.card h2 {
+    text-align: center;
+    margin: 8px;
+}
+
+div.card div {
+    padding: 0 20px 5px 20px;
+    font-size: 1.2em;
+}
