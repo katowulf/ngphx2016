@@ -16,7 +16,7 @@ import { FirebaseObjectObservable } from 'angularfire2';
         <input [ngModel]="(hobby | async)?.description" (ngModelChange)="hobby.update({description: $event})" placeholder="description">
         
         <label>Count</label>
-        <input type="number" [ngModel]="(hobby | async)?.count" (ngModelChange)="hobby.update({count: $event})" placeholder="count">
+        <input type="number" [ngModel]="(hobby | async)?.count" (ngModelChange)="hobby.update({count: toNumber($event)})" placeholder="count">
         
         <label>Units</label>
         <input [ngModel]="(hobby | async)?.units" (ngModelChange)="hobby.update({units: $event})" placeholder="units">
@@ -47,5 +47,9 @@ export class HobbyDetailComponent implements OnInit {
     // A rudimentary way to get back to the list of hobbies.
     // We could use window.history.back(), but then our history of details viewed would be lost.
     this.router.navigate(['List']);
+  }
+
+  toNumber(val) {
+    return parseInt(val);
   }
 }
