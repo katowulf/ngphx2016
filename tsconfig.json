@@ -8,5 +8,16 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false
-  }
+  },
+  "files": [
+    "node_modules/angularfire2/firebase3.d.ts",
+    "app/hobby-detail.component.ts",
+    "app/hobby-list.component.ts",
+    "app/app.component.ts",
+    "app/main.ts",
+    "app/mock-hobbies.ts",
+    "app/hobby.ts",
+    "app/hobby.service.ts",
+    "app/firebase.config.ts"
+  ]
 }
