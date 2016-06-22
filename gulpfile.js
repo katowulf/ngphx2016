@@ -1,4 +1,7 @@
-
+/**
+ * This is a rudimentary build script. It doesn't webpack or compress. It just copies
+ * known dependencies (hard coded below) into the dist/ folder for use with `firebase deploy`.
+ */
 const gulp = require('gulp');
 
 gulp.task('build', ['copy_root', 'copy_app', 'copy_node_modules']);
