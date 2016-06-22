@@ -1,10 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {Hobby} from "./hobby";
-import {RouteParams, Router} from "@angular/router-deprecated";
+import {RouteParams, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {HobbyService} from "./hobby.service";
 import { FirebaseObjectObservable } from 'angularfire2';
 
 @Component({
+  directives: [ROUTER_DIRECTIVES],
   template: `
     <div class="detail">
       <h1>{{ (hobby | async)?.name }}</h1>
@@ -24,15 +25,14 @@ import { FirebaseObjectObservable } from 'angularfire2';
     </div>
     
     <!--<pre>{{hobby | async | json}}</pre>-->
-    <p><button (click)="goBack()">Back</button></p>
+    <p><button [routerLink]="['List']">Back to List</button></p>
   `,
   styleUrls: ['app/hobby-detail.component.css']
 })
 export class HobbyDetailComponent implements OnInit {
   // Use dependency injection to grab our hobbies service and routing data
   constructor(private hobbyService:HobbyService,
-              private routeParams:RouteParams,
-              private router:Router) {}
+              private routeParams:RouteParams) {}
 
   hobby: FirebaseObjectObservable<Hobby>;
 
@@ -41,12 +41,6 @@ export class HobbyDetailComponent implements OnInit {
     let id = this.routeParams.get('id');
     // fetch the hobby detail from our hobbies service
     this.hobby = this.hobbyService.getHobby(id);
-  }
-
-  goBack() {
-    // A rudimentary way to get back to the list of hobbies.
-    // We could use window.history.back(), but then our history of details viewed would be lost.
-    this.router.navigate(['List']);
   }
 
   toNumber(val) {
