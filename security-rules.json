@@ -1,0 +1,25 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": false,
+    "hobbies": {
+      "$hobby": {
+        // do not allow records to be deleted and they must be an object
+        ".write": "newData.hasChildren()",
+
+        // do not allow new records to be added for now
+        // hasChildren(...) lists the required fields
+        ".validate": "data.exists() && data.hasChildren(['id', 'name', 'description', 'count'])",
+
+        // validate the Hobby record schema
+        "id": { ".validate": "newData.isString() && newData.val() === $hobby" },
+        "name": { ".validate": "newData.isString()" },
+        "count": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+        "units": { ".validate": "newData.isString()" },
+
+        // disallow any other fields
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}
