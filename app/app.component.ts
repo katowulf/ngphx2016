@@ -5,7 +5,7 @@ import {HobbyDetailComponent} from "./hobby-detail.component";
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
-  providers: [ROUTER_PROVIDERS],
+  providers: [ROUTER_PROVIDERS, HobbyService],
   selector: 'my-app',
   template: `
   <router-outlet></router-outlet>
