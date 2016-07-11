@@ -3,6 +3,7 @@
 
 ```
 git clone https://github.com/katowulf/ngphx2016.git
+edit app/firebase.config.ts
 npm install
 npm start
 ```
